@@ -1,9 +1,10 @@
 // counter.js
 
 // action value
-export const PLUS_ONE = "plus_one";
-export const MINUS_ONE = "minus_one";
-
+const PLUS_ONE = "plus_one";
+const MINUS_ONE = "minus_one";
+const PLUS_N = "plus_n";
+const MINUS_N = "minus_n";
 // action creator : action value를 return하는 함수
 export const plusOne = () => {
   return {
@@ -14,6 +15,20 @@ export const plusOne = () => {
 export const minusOne = () => {
   return {
     type: MINUS_ONE,
+  };
+};
+
+export const plusN = (payload) => {
+  return {
+    type: PLUS_N,
+    payload: payload, // 3
+  };
+};
+
+export const minusN = (payload) => {
+  return {
+    type: MINUS_N,
+    payload: payload, // 3
   };
 };
 
@@ -42,6 +57,16 @@ const counter = (state = initialState, action) => {
     case MINUS_ONE:
       return {
         number: state.number - 1,
+      };
+    case PLUS_N:
+      //number는 원래 있었던 state의 number에 action.payload라는 값을 더해서 리턴해줄거야라는 의미야.
+      return {
+        number: state.number + action.payload,
+      };
+    case MINUS_N:
+      //number는 원래 있었던 state의 number에 action.payload라는 값을 더해서 리턴해줄거야라는 의미야.
+      return {
+        number: state.number - action.payload,
       };
     default:
       return state;

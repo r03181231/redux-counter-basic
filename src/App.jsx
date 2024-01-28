@@ -1,5 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { MINUS_ONE, minusOne, plusOne } from "./redux/modules/counter.js";
+import {
+  MINUS_ONE,
+  minusN,
+  minusOne,
+  plusN,
+  plusOne,
+} from "./redux/modules/counter.js";
 import { useState } from "react";
 
 function App() {
@@ -24,19 +30,21 @@ function App() {
         type="number"
         value={number}
         onChange={(e) => {
-          setNumber(e.target.value);
+          const { value } = e.target;
+          setNumber(+value);
         }}
       />
       <button
         onClick={() => {
-          dispatch(plusOne());
+          // dispatch(plusOne());
+          dispatch(plusN(number));
         }}
       >
         +
       </button>
       <button
         onClick={() => {
-          dispatch(minusOne());
+          dispatch(minusN(number));
         }}
       >
         -
